@@ -50,3 +50,32 @@ recipeList:
       version: 17
   - org.openrewrite.maven.UseMavenCompilerPluginReleaseConfiguration:
       releaseVersion: 17
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.apache.camel.upgrade.UpgradeToJava21
+displayName: Migrate to Java 21
+description: >
+  This recipe will apply changes commonly needed when migrating to Java 21. Build files will be updated to use Java 21
+  as the target/source and plugins will be upgraded to versions that are compatible with Java 21.
+tags:
+  - java21
+recipeList:
+  - org.apache.camel.upgrade.SetupJavaUpgradeJavaVersion:
+      minimumJavaMajorVersion: 21
+  - org.openrewrite.maven.UpgradePluginVersion:
+      groupId: org.apache.maven.plugins
+      artifactId: maven-checkstyle-plugin
+      newVersion: 3.x
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.apache.camel.upgrade.JavaVersion21
+displayName: Change Maven Java version property values to 21
+description: Change maven.compiler.source and maven.compiler.target values to 21.
+tags:
+  - java21
+  - compiler
+recipeList:
+  - org.apache.camel.upgrade.UpgradeJavaVersion:
+      version: 21
+  - org.openrewrite.maven.UseMavenCompilerPluginReleaseConfiguration:
+      releaseVersion: 21

@@ -29,4 +29,9 @@ public class CamelUpdate410LtsVersionTest extends AbstractCamelUpdateVersionTest
     protected String targetVersion() {
         return System.getProperty("camel4.10-lts-version");
     }
+
+    @Override
+    protected String targetJavaVersion() {
+        return "17";
+    }
 }
